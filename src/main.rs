@@ -28,6 +28,15 @@ struct Rectangle {
     bottom_right: Point,
 }
 
+impl Rectangle {
+    fn area(&self) -> f32 {
+        let Rectangle {top_left: Point {x: x1, y: y1}, bottom_right: Point {x: x2, y: y2}} = *self;
+        let length = x2 - x1;
+        let height = y1 - y2;
+        (length * height * length * height).sqrt()
+    }
+}
+
 fn rect_area(rect: &Rectangle) -> f32 {
     // this can work, but doesn't seem nested
     let Point { x: x1, y: y1 } = rect.top_left;
@@ -71,5 +80,7 @@ fn main() {
     let rect: Rectangle = Rectangle { top_left: p1, bottom_right: p2 };
     let Rectangle { top_left: Point { x: ref x1, y: ref y1 },
                     bottom_right: Point { x: ref x2, y: ref y2 } } = rect;
-    println!("{:?}", peter);
+    // *x1 = 1.0; // wtf
+    println!("rect area: {}", rect_area(&rect));
+    println!("rect area: {}", rect.area());
 }
