@@ -1,3 +1,5 @@
+
+
 #[derive(Debug)]
 struct Person<'a> {
     // The 'a defines a lifetime
@@ -56,9 +58,38 @@ fn rect_area(rect: &Rectangle) -> f32 {
     (x1 - x2) * (y1 - y2)
 }
 
+mod aaa {
+    pub struct TestObject {
+        pub a: i32
+    }
+
+    impl TestObject {
+        pub fn new(a: i32)->TestObject {
+            TestObject {
+                a: a
+            }
+        }
+
+        pub fn new_simple()->TestObject {
+            TestObject {
+                a: 0
+            }
+        }
+    }
+}
+
+mod human;
+
 fn main() {
-    let mut a: i32 = 0;
-    a = 1;
+    let h = human::Human{name: String::from("Anton"), age: 34};
+    let mut a1: aaa::TestObject = aaa::TestObject::new(1);
+    let mut a2: aaa::TestObject = aaa::TestObject::new_simple();
+
+    let mut a: i32 = 1;
+    let y = & mut a;
+    *y = 10;
+
+
     println!("Hello, world!");
 
 
