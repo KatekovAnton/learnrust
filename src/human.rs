@@ -7,3 +7,7 @@ pub struct Human {
 }
 
 
+fn test() {
+    println!("123");
+}
+
